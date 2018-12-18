@@ -111,7 +111,7 @@ void main()
         oogl::clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         oogl::clearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-        oogl::drawTriangleArrays(6);
+        oogl::Triangle::drawArrays(6);
         window.display();
         fpsCounter.update();
     }

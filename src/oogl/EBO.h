@@ -11,9 +11,27 @@ namespace oogl {
 /**
  * Element Buffer Object
  */
+
+template<GLenum type>
 class EBO : public Object {
     public:
-        EBO() : Object() {}
+        EBO() : Object(), mBytesPerIndex(0), mType(0), mIndexesCount(0) {
+            mType = type;
+            switch (mType) {
+                case GL_UNSIGNED_INT:
+                    mBytesPerIndex = sizeof(GLuint);
+                    break;
+                case GL_UNSIGNED_SHORT:
+                    mBytesPerIndex = sizeof(GLushort);
+                    break;
+                case GL_UNSIGNED_BYTE:
+                    mBytesPerIndex = sizeof(GLubyte);
+                    break;
+                default:
+                    OOGL_LOGE("EBO type %d not supported by oogl", type);
+                    return;
+            }
+        }
 
         inline void create() {
             glGenBuffers(1, &mId);
@@ -41,43 +59,37 @@ class EBO : public Object {
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
         }
 
-        inline void setData(GLsizeiptr size, const GLuint *data, GLenum usage) {
+        inline void setData(GLsizei size, const void *data, GLenum usage) {
             bind();
-            glBufferData(GL_ELEMENT_ARRAY_BUFFER, size * sizeof(GLuint), data, usage);
+            mIndexesCount = size;
+            glBufferData(GL_ELEMENT_ARRAY_BUFFER, size * mBytesPerIndex, data, usage);
             unbind();
         }
 
-        inline void setData(GLsizeiptr size, const GLushort *data, GLenum usage) {
+        inline void setSubData(GLintptr offset, GLsizei size, const GLubyte *data) {
             bind();
-            glBufferData(GL_ELEMENT_ARRAY_BUFFER, size * sizeof(GLushort), data, usage);
+            glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, offset * mBytesPerIndex, size * mBytesPerIndex, data);
             unbind();
         }
 
-        inline void setData(GLsizeiptr size, const GLubyte *data, GLenum usage) {
-            bind();
-            glBufferData(GL_ELEMENT_ARRAY_BUFFER, size * sizeof(GLubyte), data, usage);
-            unbind();
+        inline GLenum getType() const {
+            return mType;
         }
 
-        inline void setSubData(GLintptr offset, GLsizeiptr size, const GLuint *data) {
-            bind();
-            glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, offset * sizeof(GLuint), size * sizeof(GLuint), data);
-            unbind();
+        inline GLsizei getIndexesCount() const {
+            return mIndexesCount;
         }
 
-        inline void setSubData(GLintptr offset, GLsizeiptr size, const GLushort *data) {
-            bind();
-            glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, offset * sizeof(GLushort), size * sizeof(GLushort), data);
-            unbind();
-        }
-
-        inline void setSubData(GLintptr offset, GLsizeiptr size, const GLubyte *data) {
-            bind();
-            glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, offset * sizeof(GLubyte), size * sizeof(GLubyte), data);
-            unbind();
-        }
+    protected:
+        int mBytesPerIndex;
+        GLenum mType;
+        GLsizei mIndexesCount;
 
 };
+
+typedef EBO<GL_UNSIGNED_BYTE> UByteEBO;
+typedef EBO<GL_UNSIGNED_SHORT> UShortEBO;
+typedef EBO<GL_UNSIGNED_INT> UIntEBO;
 
 }
 

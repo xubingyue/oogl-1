@@ -66,7 +66,7 @@ void main()
             }
         }
 
-        oogl::drawTriangleArrays(6);
+        oogl::Triangle::drawArrays(6);
         window.display();
         fpsCounter.update();
     }

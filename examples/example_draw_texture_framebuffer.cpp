@@ -172,12 +172,12 @@ int main() {
         program1.use();
         framebuffer.bind();
         oogl::viewPort(0, 0, 1280, 720);
-        oogl::drawTriangleArrays(6);
+        oogl::Triangle::drawArrays(6);
 
         program2.use();
         oogl::Framebuffer::SCREEN.bind();
         oogl::viewPort(0, 0, window.getSize().x, window.getSize().y);
-        oogl::drawTriangleArrays(6);
+        oogl::Triangle::drawArrays(6);
 
         window.display();
         fpsCounter.update();

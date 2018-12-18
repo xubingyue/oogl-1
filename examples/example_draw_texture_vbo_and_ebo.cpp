@@ -89,7 +89,7 @@ void main()
     textureCoordVBO.create();
     textureCoordVBO.setData(8, textureCoord, GL_STATIC_DRAW);
 
-    oogl::EBO indicesEBO;
+    oogl::UShortEBO indicesEBO;
     indicesEBO.create();
     indicesEBO.setData(6, indices, GL_STATIC_DRAW);
 
@@ -117,7 +117,8 @@ void main()
         oogl::clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         oogl::clearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-        oogl::drawTriangleElements(12, GL_UNSIGNED_SHORT);
+        oogl::Triangle::drawElements(indicesEBO);
+
         window.display();
         fpsCounter.update();
     }

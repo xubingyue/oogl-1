@@ -223,7 +223,7 @@ int main() {
 
             diffuseTextureUniform.set(mesh.diffuseTexture, meshIndex);
 
-            oogl::drawTriangleArrays(mesh.verticesCount);
+            oogl::Triangle::drawArrays(mesh.verticesCount);
         }
 
         window.display();

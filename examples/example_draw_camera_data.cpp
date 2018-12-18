@@ -129,7 +129,7 @@ void main()
         imgTexture.setData(width, height, frameRGBAFlipped.data);
         inputImageTexture.set(imgTexture, 0);
 
-        oogl::drawTriangleArrays(6);
+        oogl::Triangle::drawArrays(6);
         window.display();
         fpsCounter.update();
     }

@@ -55,14 +55,14 @@ class Framebuffer : public Object {
                 void *data,
                 GLint x = 0,
                 GLint y = 0,
-                GLsizei width = DEPEND_ON_FRAMEBUFFER_SIZE,
-                GLsizei height = DEPEND_ON_FRAMEBUFFER_SIZE) {
+                GLsizei width = EQUAL_TO_FRAMEBUFFER_SIZE,
+                GLsizei height = EQUAL_TO_FRAMEBUFFER_SIZE) {
 
             bind();
             glReadPixels(
                     0, 0,
-                    width == DEPEND_ON_FRAMEBUFFER_SIZE ? mWidth : width,
-                    height == DEPEND_ON_FRAMEBUFFER_SIZE ? mHeight : height,
+                    width == EQUAL_TO_FRAMEBUFFER_SIZE ? mWidth : width,
+                    height == EQUAL_TO_FRAMEBUFFER_SIZE ? mHeight : height,
                     GL_RGBA, GL_UNSIGNED_BYTE, data
             );
             unbind();
@@ -90,7 +90,7 @@ class Framebuffer : public Object {
 
     public:
         static const Framebuffer SCREEN;
-        static const GLsizei DEPEND_ON_FRAMEBUFFER_SIZE = -1;
+        static const GLsizei EQUAL_TO_FRAMEBUFFER_SIZE = -1;
 
     protected:
         Texture2D mTexture;

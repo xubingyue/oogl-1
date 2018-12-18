@@ -92,7 +92,7 @@ void main()
 
     while (running) {
         oogl::viewPort(0, 0, window->getSize().x, window->getSize().y);
-        oogl::drawTriangleArrays(6);
+        oogl::Triangle::drawArrays(6);
 
         // swap buffer
         window->display();

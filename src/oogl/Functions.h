@@ -8,22 +8,6 @@
 
 namespace oogl {
 
-inline void drawTriangleArrays(GLsizei count, GLint first = 0) {
-    glDrawArrays(GL_TRIANGLES, first, count);
-}
-
-inline void drawRectangleArrays(GLsizei count, GLint first = 0) {
-    glDrawArrays(GL_TRIANGLE_STRIP, first, count);
-}
-
-inline void drawTriangleElements(GLsizei count, GLenum type, const void *indices = NULL) {
-    glDrawElements(GL_TRIANGLES, count, type, indices);
-}
-
-inline void drawRectangleElements(GLsizei count, GLenum type, const void *indices = NULL) {
-    glDrawElements(GL_TRIANGLE_STRIP, count, type, indices);
-}
-
 inline void clear(GLbitfield mask) {
     glClear(mask);
 }

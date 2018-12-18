@@ -16,5 +16,6 @@
 #include "EBO.h"
 #include "Functions.h"
 #include "StatusManager.h"
+#include "Draw.h"
 
 #endif //OOGL_OOGL_H
