@@ -11,7 +11,7 @@ namespace oogl {
 
 class Attribute {
     public:
-        explicit Attribute(GLint index) {
+        explicit Attribute(GLint index = -1) {
             if (index < 0) {
                 mIndexInvalid = true;
                 mIndex = INVALID_GL_ID;

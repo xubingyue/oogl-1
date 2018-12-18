@@ -80,7 +80,11 @@ class Program : public Object {
             glUseProgram(mId);
         }
 
-        static inline void unuse() {
+        inline void unuse() const {
+            unuseAll();
+        }
+
+        static inline void unuseAll() {
             glUseProgram(0);
         }
 

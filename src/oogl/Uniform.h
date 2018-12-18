@@ -11,7 +11,7 @@ namespace oogl {
 
 class Uniform {
     public:
-        explicit Uniform(GLint index) {
+        explicit Uniform(GLint index = -1) {
             if (index < 0) {
                 mIndexInvalid = true;
                 mIndex = INVALID_GL_ID;
