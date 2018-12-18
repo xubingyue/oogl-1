@@ -47,7 +47,7 @@ Let's draw a 2D pic use oogl
 // include oogl header
 #include <oogl/oogl.h>
 
-// define a function to loadTexture from file
+// define a function to load texture from file
 oogl::Texture2D loadTexture(const std::string &file) {
     oogl::Texture2D texture;
     texture.create(
@@ -65,11 +65,11 @@ oogl::Texture2D loadTexture(const std::string &file) {
 // vertex coordinates
 GLfloat vertexCoord[12] = {
         -1.0f, -1.0f,
-        1.0f, -1.0f,
-        -1.0f, 1.0f,
-        1.0f, -1.0f,
-        -1.0f, 1.0f,
-        1.0f, 1.0f
+         1.0f, -1.0f,
+        -1.0f,  1.0f,
+         1.0f, -1.0f,
+        -1.0f,  1.0f,
+         1.0f,  1.0f
 };
 
 // texture coordinates

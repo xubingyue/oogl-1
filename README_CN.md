@@ -46,7 +46,7 @@ $ make
 // 包含 oogl 头文件
 #include <oogl/oogl.h>
 
-// 定义一个函数, 用来加载从图片文件加载纹理
+// 定义一个函数, 用来从图片文件加载纹理
 oogl::Texture2D loadTexture(const std::string &file) {
     oogl::Texture2D texture;
     texture.create(
@@ -64,11 +64,11 @@ oogl::Texture2D loadTexture(const std::string &file) {
 // 顶点坐标
 GLfloat vertexCoord[12] = {
         -1.0f, -1.0f,
-        1.0f, -1.0f,
-        -1.0f, 1.0f,
-        1.0f, -1.0f,
-        -1.0f, 1.0f,
-        1.0f, 1.0f
+         1.0f, -1.0f,
+        -1.0f,  1.0f,
+         1.0f, -1.0f,
+        -1.0f,  1.0f,
+         1.0f,  1.0f
 };
 
 // 纹理坐标
