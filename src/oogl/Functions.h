@@ -81,6 +81,25 @@ inline void finish() {
     glFinish();
 }
 
+inline int getIntegerValue(GLenum pname) {
+    int val;
+    glGetIntegerv(pname, &val);
+    return val;
+}
+
+inline GLfloat getFloatValue(GLenum pname) {
+    GLfloat val;
+    glGetFloatv(pname, &val);
+    return val;
+}
+
+inline GLboolean getBooleanValue(GLenum pname) {
+    GLboolean val;
+    glGetBooleanv(pname, &val);
+    return val;
+}
+
+
 }
 
 
