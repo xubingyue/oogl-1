@@ -83,7 +83,7 @@ GLfloat textureCoord[12] = {
 
 int main() {
     sf::RenderWindow window;
-    window.create(sf::VideoMode(1280, 720), __EXAMPLE_TARGET__, sf::Style::Default, sf::ContextSettings(32));
+    window.create(sf::VideoMode(1280, 720), "draw 2d pic demo", sf::Style::Default, sf::ContextSettings(32));
 
     // 创建顶点着色器
     oogl::VertexShader vertexShader;
