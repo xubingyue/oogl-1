@@ -59,9 +59,21 @@ class EBO : public Object {
             unbind();
         }
 
+        inline void setSubData(GLintptr offset, GLsizeiptr size, const GLuint *data) {
+            bind();
+            glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, offset * sizeof(GLuint), size * sizeof(GLuint), data);
+            unbind();
+        }
+
         inline void setSubData(GLintptr offset, GLsizeiptr size, const GLushort *data) {
             bind();
             glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, offset * sizeof(GLushort), size * sizeof(GLushort), data);
+            unbind();
+        }
+
+        inline void setSubData(GLintptr offset, GLsizeiptr size, const GLubyte *data) {
+            bind();
+            glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, offset * sizeof(GLubyte), size * sizeof(GLubyte), data);
             unbind();
         }
 

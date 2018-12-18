@@ -64,15 +64,16 @@ class Mesh {
         static oogl::Texture2D loadTexture(const std::string &file, bool flip = true) {
             if (textureMap.find(file) == textureMap.end()) {
                 oogl::Texture2D texture;
-                texture.create();
-                texture.bind();
+                texture.create(
+                        {
+                                GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR,
+                                GL_TEXTURE_MAG_FILTER, GL_LINEAR,
+                                GL_TEXTURE_WRAP_S, GL_REPEAT,
+                                GL_TEXTURE_WRAP_T, GL_REPEAT
+                        }
+                );
                 texture.loadFromFile(file, flip);
                 texture.genMipmap();
-                texture.setParameter(GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-                texture.setParameter(GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-                texture.setParameter(GL_TEXTURE_WRAP_S, GL_REPEAT);
-                texture.setParameter(GL_TEXTURE_WRAP_T, GL_REPEAT);
-                texture.unbind();
                 textureMap[file] = texture;
             }
             return textureMap[file];

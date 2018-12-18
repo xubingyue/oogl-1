@@ -29,6 +29,26 @@ class Texture2D : public Object {
             }
         }
 
+        inline void create(std::initializer_list<GLint> args) {
+            if (args.size() % 2 != 0) {
+                OOGL_LOGE("Create texture err, parameters and values should appear in pairs");
+                return;
+            }
+
+            create();
+            if (!mId) return;
+
+            int paramsSize = static_cast<int>(args.size() / 2);
+
+            const GLint *argsPtr = args.begin();
+
+            bind();
+            for (int i = 0; i < paramsSize; ++i) {
+                glTexParameteri(GL_TEXTURE_2D, (GLenum) argsPtr[i * 2], argsPtr[i * 2 + 1]);
+            }
+            unbind();
+        }
+
         inline void release() {
             glDeleteTextures(1, &mId);
             mId = INVALID_GL_ID;
@@ -47,15 +67,21 @@ class Texture2D : public Object {
         }
 
         inline void genMipmap() const {
+            bind();
             glGenerateMipmap(GL_TEXTURE_2D);
+            unbind();
         }
 
         inline void setParameter(GLenum pname, GLfloat param) {
+            bind();
             glTexParameterf(GL_TEXTURE_2D, pname, param);
+            unbind();
         }
 
         inline void setParameter(GLenum pname, GLint param) {
+            bind();
             glTexParameteri(GL_TEXTURE_2D, pname, param);
+            unbind();
         }
 
         inline void setData(
@@ -68,7 +94,9 @@ class Texture2D : public Object {
 
             mWidth = width;
             mHeight = height;
+            bind();
             glTexImage2D(GL_TEXTURE_2D, level, internalFormat, width, height, border, format, type, pixels);
+            unbind();
         }
 
         inline void loadFromFile(
@@ -129,6 +157,10 @@ class Texture2D : public Object {
 
         GLsizei getHeight() const {
             return mHeight;
+        }
+
+        bool isEmpty() const {
+            return mId == 0;
         }
 
     public:

@@ -97,6 +97,7 @@ class Attribute {
             v.bind();
             glVertexAttribPointer(mIndex, vecSize, type, normalized, stride, NULL);
             glEnableVertexAttribArray(mIndex);
+            v.unbind();
         }
 
         inline bool valid() {

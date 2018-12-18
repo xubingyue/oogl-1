@@ -7,28 +7,30 @@
 
 oogl::Texture2D loadTexture(const std::string &file) {
     oogl::Texture2D texture;
-    texture.create();
-    texture.bind();
-    texture.setParameter(GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    texture.setParameter(GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    texture.setParameter(GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    texture.setParameter(GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    texture.create(
+            {
+                    GL_TEXTURE_MIN_FILTER, GL_LINEAR,
+                    GL_TEXTURE_MAG_FILTER, GL_LINEAR,
+                    GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE,
+                    GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE
+            }
+    );
     texture.loadFromFile(file);
-    texture.unbind();
     return texture;
 }
 
 oogl::Framebuffer genFramebufferWithTexture(GLsizei width, GLsizei height) {
 
     oogl::Texture2D texture;
-    texture.create();
-    texture.bind();
-    texture.setParameter(GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    texture.setParameter(GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    texture.setParameter(GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    texture.setParameter(GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    texture.create(
+            {
+                    GL_TEXTURE_MIN_FILTER, GL_LINEAR,
+                    GL_TEXTURE_MAG_FILTER, GL_LINEAR,
+                    GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE,
+                    GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE
+            }
+    );
     texture.setData(width, height, NULL);
-    texture.unbind();
 
     oogl::Framebuffer framebuffer;
     framebuffer.create();

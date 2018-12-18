@@ -8,14 +8,15 @@
 
 oogl::Texture2D loadTexture(const std::string &file) {
     oogl::Texture2D texture;
-    texture.create();
-    texture.bind();
-    texture.setParameter(GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    texture.setParameter(GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    texture.setParameter(GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    texture.setParameter(GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    texture.create(
+            {
+                    GL_TEXTURE_MIN_FILTER, GL_LINEAR,
+                    GL_TEXTURE_MAG_FILTER, GL_LINEAR,
+                    GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE,
+                    GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE
+            }
+    );
     texture.loadFromFile(file);
-    texture.unbind();
     return texture;
 }
 
@@ -114,7 +115,7 @@ int main() {
             }
         }
 
-        if(fpsChanged) { // fps changed
+        if (fpsChanged) { // fps changed
             fpsChanged = false;
             window.setTitle(__EXAMPLE_TARGET__ "  fps: " + std::to_string(fps));
         }

@@ -60,21 +60,6 @@
 
 #define INVALID_GL_ID           (0)
 #define DEFAULT_INFO_LOG_SIZE   (4096)
-#define GL_TEXTURES_SIZE        (12)
-
-static GLenum GL_TEXTURES[GL_TEXTURES_SIZE] = {
-        GL_TEXTURE0,
-        GL_TEXTURE1,
-        GL_TEXTURE2,
-        GL_TEXTURE3,
-        GL_TEXTURE4,
-        GL_TEXTURE5,
-        GL_TEXTURE6,
-        GL_TEXTURE7,
-        GL_TEXTURE8,
-        GL_TEXTURE9,
-        GL_TEXTURE10,
-        GL_TEXTURE11,
-};
+#define GL_TEXTURES_SIZE        (16)
 
 #endif //OOGL_GL_H

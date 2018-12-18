@@ -1,3 +1,4 @@
 .idea
 cmake-build-*
 build
+run_all_examples.sh

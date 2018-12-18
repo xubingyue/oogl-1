@@ -50,7 +50,7 @@ inline void activeTextureIndex(int index) {
         OOGL_LOGE("Active texture index %d exceeded limit", index);
         return;
     }
-    activeTexture(GL_TEXTURES[index]);
+    activeTexture((GLenum) (GL_TEXTURE0 + index));
 }
 
 inline void viewPort(GLint x, GLint y, GLsizei width, GLsizei height) {

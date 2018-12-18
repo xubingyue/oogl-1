@@ -10,14 +10,15 @@
 
 oogl::Texture2D newTexture(GLsizei width, GLsizei height) {
     oogl::Texture2D texture;
-    texture.create();
-    texture.bind();
-    texture.setParameter(GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    texture.setParameter(GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    texture.setParameter(GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    texture.setParameter(GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    texture.create(
+            {
+                    GL_TEXTURE_MIN_FILTER, GL_LINEAR,
+                    GL_TEXTURE_MAG_FILTER, GL_LINEAR,
+                    GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE,
+                    GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE
+            }
+    );
     texture.setData(width, height, NULL);
-    texture.unbind();
     return texture;
 }
 
@@ -96,7 +97,6 @@ void main()
 
     positionAttr.setPointer(vertexCoord);
     inputTextureCoordinateAttr.setPointer(textureCoord);
-    inputImageTexture.set(imgTexture, 0);
 
     bool running = true;
     while (running) {
@@ -121,6 +121,7 @@ void main()
         }
 
         imgTexture.setData(width, height, frameBGR.data, 0, GL_RGBA, 0, GL_BGR, GL_UNSIGNED_BYTE);
+        inputImageTexture.set(imgTexture, 0);
 
         oogl::drawTriangleArrays(6);
         window.display();

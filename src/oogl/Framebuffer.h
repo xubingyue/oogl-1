@@ -76,6 +76,10 @@ class Framebuffer : public Object {
             return mHeight;
         }
 
+        bool isScreen() const {
+            return mId == 0;
+        }
+
         inline Texture2D getTexture() {
             return mTexture;
         }
