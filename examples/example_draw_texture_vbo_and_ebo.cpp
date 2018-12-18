@@ -3,6 +3,7 @@
 //
 #include <SFML/Graphics.hpp>
 #include <oogl/oogl.h>
+#include "FPSCounter.h"
 
 oogl::Texture2D loadTexture(const std::string &file) {
     oogl::Texture2D texture;
@@ -40,7 +41,7 @@ int main() {
     sf::RenderWindow window;
     window.create(sf::VideoMode(1280, 720), __EXAMPLE_TARGET__, sf::Style::Default, sf::ContextSettings(32));
 
-    oogl::FPSCounter fpsCounter;
+    FPSCounter fpsCounter;
     fpsCounter.setFpsChangedListener([&window](int fps) {
         window.setTitle(__EXAMPLE_TARGET__ "  fps: " + std::to_string(fps));
     });

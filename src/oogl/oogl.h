@@ -15,6 +15,5 @@
 #include "VBO.h"
 #include "EBO.h"
 #include "Functions.h"
-#include "FPSCounter.h"
 
 #endif //OOGL_OOGL_H

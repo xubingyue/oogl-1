@@ -8,6 +8,9 @@
 
 namespace oogl {
 
+/**
+ * Element Buffer Object
+ */
 class EBO : public Object {
     public:
         EBO() : Object() {}

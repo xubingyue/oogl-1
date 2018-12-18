@@ -7,13 +7,14 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include "obj_loader_with_objl.h"
+#include "FPSCounter.h"
 
 int main() {
 
     sf::RenderWindow window;
     window.create(sf::VideoMode(1600, 900), __EXAMPLE_TARGET__, sf::Style::Default, sf::ContextSettings(32));
 
-    oogl::FPSCounter fpsCounter;
+    FPSCounter fpsCounter;
     fpsCounter.setFpsChangedListener([&window](int fps) {
         window.setTitle(__EXAMPLE_TARGET__ "  fps: " + std::to_string(fps));
     });

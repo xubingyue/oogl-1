@@ -3,11 +3,12 @@
 //
 #include <SFML/Window.hpp>
 #include <oogl/oogl.h>
+#include "FPSCounter.h"
 
 int main(int argc, char **argv) {
     sf::Window window(sf::VideoMode(1280, 720), __EXAMPLE_TARGET__);
 
-    oogl::FPSCounter fpsCounter;
+    FPSCounter fpsCounter;
     fpsCounter.setFpsChangedListener([&window](int fps) {
         window.setTitle(__EXAMPLE_TARGET__ "  fps: " + std::to_string(fps));
     });

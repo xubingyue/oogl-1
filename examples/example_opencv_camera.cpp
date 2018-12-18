@@ -7,6 +7,7 @@
 #include <opencv2/videoio.hpp>
 #include <opencv2/imgproc.hpp>
 #include <oogl/oogl.h>
+#include "FPSCounter.h"
 
 int main(int argc, char **argv) {
     cv::Mat frameBGR;
@@ -31,7 +32,7 @@ int main(int argc, char **argv) {
 
     sf::RenderWindow window(sf::VideoMode(width, height), __EXAMPLE_TARGET__);
 
-    oogl::FPSCounter fpsCounter;
+    FPSCounter fpsCounter;
     fpsCounter.setFpsChangedListener([&window](int fps) {
         window.setTitle(__EXAMPLE_TARGET__ "  fps: " + std::to_string(fps));
     });

@@ -8,6 +8,9 @@
 
 namespace oogl {
 
+/**
+ * Vertex Buffer Object
+ */
 class VBO : public Object {
     public:
         VBO() : Object() {}

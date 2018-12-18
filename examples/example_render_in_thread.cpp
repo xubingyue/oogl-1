@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <oogl/oogl.h>
 #include <thread>
+#include "FPSCounter.h"
 
 oogl::Texture2D loadTexture(const std::string &file) {
     oogl::Texture2D texture;
@@ -41,7 +42,7 @@ int fps = 0;
 bool fpsChanged = false;
 
 void threadEntry(sf::Window *window) {
-    oogl::FPSCounter fpsCounter;
+    FPSCounter fpsCounter;
     fpsCounter.setFpsChangedListener([&](int f) {
         fps = f;
         fpsChanged = true;

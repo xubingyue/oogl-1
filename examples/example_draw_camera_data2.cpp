@@ -6,6 +6,7 @@
 #include <opencv2/core.hpp>
 #include <opencv2/videoio.hpp>
 #include <opencv2/imgproc.hpp>
+#include "FPSCounter.h"
 
 oogl::Texture2D newTexture(GLsizei width, GLsizei height) {
     oogl::Texture2D texture;
@@ -54,7 +55,7 @@ int main() {
     sf::RenderWindow window;
     window.create(sf::VideoMode(width, height), __EXAMPLE_TARGET__, sf::Style::Default, sf::ContextSettings(32));
 
-    oogl::FPSCounter fpsCounter;
+    FPSCounter fpsCounter;
     fpsCounter.setFpsChangedListener([&window](int fps) {
         window.setTitle(__EXAMPLE_TARGET__ "  fps: " + std::to_string(fps));
     });

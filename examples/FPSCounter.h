@@ -7,8 +7,6 @@
 #include <sys/time.h>
 #include <functional>
 
-namespace oogl {
-
 class FPSCounter {
     public:
         explicit FPSCounter(long calcPerMillis = 1000) : mFps(0), mCalcPerMillis(calcPerMillis) {
@@ -45,7 +43,5 @@ class FPSCounter {
         std::function<void(int)> mCallback;
         long mCalcPerMillis;
 };
-
-}
 
 #endif //OOGL_FPSCOUNTER_H
