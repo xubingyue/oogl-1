@@ -60,13 +60,19 @@ class EBO : public Object {
         }
 
         inline void setData(GLsizei size, const void *data, GLenum usage) {
-            bind();
             mIndexesCount = size;
+
+            bind();
             glBufferData(GL_ELEMENT_ARRAY_BUFFER, size * mBytesPerIndex, data, usage);
             unbind();
         }
 
-        inline void setSubData(GLintptr offset, GLsizei size, const GLubyte *data) {
+        inline void setSubData(GLintptr offset, GLsizei size, const void *data) {
+            if (offset + size > mIndexesCount) {
+                OOGL_LOGE("Update EBO sub data err, offset(%lu) + size(%d) > totalSize(%d)", offset, size, mIndexesCount);
+                return;
+            }
+
             bind();
             glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, offset * mBytesPerIndex, size * mBytesPerIndex, data);
             unbind();
